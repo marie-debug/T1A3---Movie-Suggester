@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
+import helpers as hp
 import json
 
 load_dotenv()
@@ -11,16 +12,7 @@ genres_result = requests.get(
     'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US').json()
 
 
-def genre_dictionary():
-    genresList = genres_result['genres']
-    genre_dict = {}
-    for genre in genresList:
-        # print(genre)
-        genre_dict[genre['name']] = genre['id']
-    return genre_dict
-
-
-genre_names = genre_dictionary()
+genre_names = hp.genre_dictionary(genres_result)
 
 print('Welcome to Movie suggestor, we help you find great shows!')
 while True:
@@ -34,6 +26,7 @@ while True:
     else:
         print('The genre selected is not available. Please select from list below.')
         [print(key) for key, value in genre_names.items()]
+
 
 movies = requests.get('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
                       '&language=en-US&with_genres='+str(genre_names[user_input])+'&sort_by=vote_average.desc').json()
