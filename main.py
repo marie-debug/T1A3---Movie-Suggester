@@ -11,30 +11,32 @@ genres_result = requests.get(
     'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US').json()
 
 
-genresList = genres_result['genres']
+def genre_dictionary():
+    genresList = genres_result['genres']
+    genre_dict = {}
+    for genre in genresList:
+        # print(genre)
+        genre_dict[genre['name']] = genre['id']
+    return genre_dict
 
-genre_dict = {}
-for genre in genresList:
 
-    genre_dict[genre['name']] = genre['id']
-
+genre_names = genre_dictionary()
 
 print('Welcome to Movie suggestor, we help you find great shows!')
 while True:
     user_input = input(
         'Please type in a genre of movies you would like to see:  ').capitalize()
 
-    if user_input in genre_dict:
+    if user_input in genre_names:
         print(
             f'You have selected {user_input} below is a list of top 10 {user_input} movies available: ')
         break
     else:
         print('The genre selected is not available. Please select from list below.')
-        [print(key) for key, value in genre_dict.items()]
-
+        [print(key) for key, value in genre_names.items()]
 
 movies = requests.get('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
-                      '&language=en-US&with_genres='+str(genre_dict[user_input])+'&sort_by=vote_average.desc').json()
+                      '&language=en-US&with_genres='+str(genre_names[user_input])+'&sort_by=vote_average.desc').json()
 
 top_movies = movies['results'][:11]
 
