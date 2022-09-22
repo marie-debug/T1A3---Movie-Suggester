@@ -70,12 +70,12 @@ trending = {'page': 1,
       'name': 'Star Wars: Andor',
        'original_language': 'en',
        'original_name': 'Star Wars: Andor',
-       'overview': 'The tale of the burgeoning rebellion against the Empire and how people and planets became involved. In an era filled with danger, deception and intrigue, Cassian Andor embarks on the path that is destined to turn him into a rebel hero.', 'poster_path': '/59SVNwLfoMnZPPB6ukW6dlPxAdI.jpg', 'media_type': 'tv', 
-       'genre_ids': [10765, 10759, 10768], 
-       'popularity': 180.762, 
+       'overview': 'The tale of the burgeoning rebellion against the Empire and how people and planets became involved. In an era filled with danger, deception and intrigue, Cassian Andor embarks on the path that is destined to turn him into a rebel hero.', 'poster_path': '/59SVNwLfoMnZPPB6ukW6dlPxAdI.jpg', 'media_type': 'tv',
+       'genre_ids': [10765, 10759, 10768],
+       'popularity': 180.762,
        'first_air_date': '2022-09-21',
         'vote_average': 9.25,
-         'vote_count': 12, 
+         'vote_count': 12,
          'origin_country': ['US']
 
     },
@@ -98,3 +98,48 @@ trending = {'page': 1,
          },
           'origin_country': ['US']
           }], 'total_pages': 1000, 'total_results': 20000}
+
+upcoming_movies = {
+
+    'dates': {'maximum': '2022-10-19', 'minimum': '2022-09-28'},
+     'page': 1,
+     'results':
+     [
+        {
+            'adult': False,
+            'backdrop_path': '/2RSirqZG949GuRwN38MYCIGG4Od.jpg',
+             'genre_ids': [53],
+             'id': 985939,
+              'original_language': 'en',
+              'original_title': 'Fall',
+              'overview': 'For best friends Becky and Hunter, life is all about conquering fears and pushing limits. But after they climb 2,000 feet to the top of a remote, abandoned radio tower, they find themselves stranded with no way down. Now Becky and Hunter’s expert climbing skills will be put to the ultimate test as they desperately fight to survive the elements, a lack of supplies, and vertigo-inducing heights',
+              'popularity': 6633.214,
+               'poster_path': '/spCAxD99U1A6jsiePFoqdEcY0dG.jpg',
+               'release_date': '2022-08-11',
+               'title': 'Fall',
+                'video': False,
+                'vote_average': 7.4,
+                'vote_count': 792
+
+                },
+                 {
+                    'adult': False,
+                    'backdrop_path': '/ugS5FVfCI3RV0ZwZtBV3HAV75OX.jpg',
+                    'genre_ids': [16, 878, 28],
+                    'id': 610150,
+                    'original_language': 'ja',
+                     'original_title': 'ドラゴンボール超 スーパーヒーロー',
+                      'overview': 'The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family.',
+                       'popularity': 2783.286,
+                        'poster_path': '/rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg',
+                         'release_date': '2022-06-11',
+                         'title': 'Dragon Ball Super: Super Hero',
+                          'video': False,
+                          'vote_average': 8,
+                          'vote_count': 1677
+                          }
+
+                          ],
+                          'total_pages': 24,
+                           'total_results': 461
+                           }

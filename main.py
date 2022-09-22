@@ -15,6 +15,22 @@ genres_result = requests.get(
 genre_names = hp.genre_dictionary(genres_result)
 
 print('Welcome to Movie suggestor, we help you find great shows!')
+print('here is a list of trending shows')
+trending= requests.get('https://api.themoviedb.org/3/trending/all/day?api_key='+api_key).json()
+trending_shows= trending['results'][:11]
+
+for show in trending_shows:
+    if 'name' in show:
+        print('\n================================')
+        print('Title: ' + show['name'])
+        print('Summary: ' + show['overview'])
+        print('Original_language: ' + show['original_language'])
+    elif 'title' in show:
+        print('\n================================')
+        print('Title: ' + show['title'])
+        print('Summary: ' + show['overview'])
+        print('Original_language: ' + show['original_language'])
+
 while True:
     user_input = input(
         'Please type in a genre of movies you would like to see:  ').capitalize()
@@ -38,19 +54,12 @@ for movie in top_movies:
     print('Title: ' + movie['title'])
     print('Summary: ' + movie['overview'])
 
+upcoming_movies_response = requests.get('https://api.themoviedb.org/3/movie/upcoming?api_key='+api_key +'&language=en-US&page=1').json()
 
-trending= requests.get('https://api.themoviedb.org/3/trending/all/day?api_key='+api_key).json()
-trending_shows= trending['results'][:11]
+upcoming_movies=upcoming_movies_response['results'][:11]
 
-for show in trending_shows:
-    if 'name' in show:
-        print('\n================================')
-        print('Title: ' + show['name'])
-        print('Summary: ' + show['overview'])
-        print('Original_language: ' + show['original_language'])
-    elif 'title' in show:
-        print('\n================================')
-        print('Title: ' + show['title'])
-        print('Summary: ' + show['overview'])
-        print('Original_language: ' + show['original_language'])
-        
+for movie in upcoming_movies:
+    print('\n================================')
+    print('Title: ' + movie['title'])
+    print('Summary: ' + movie['overview'])
+    print('Release date: ' + movie['release_date'])
