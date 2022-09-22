@@ -37,3 +37,20 @@ for movie in top_movies:
     print('\n================================')
     print('Title: ' + movie['title'])
     print('Summary: ' + movie['overview'])
+
+
+trending= requests.get('https://api.themoviedb.org/3/trending/all/day?api_key='+api_key).json()
+trending_shows= trending['results'][:11]
+
+for show in trending_shows:
+    if 'name' in show:
+        print('\n================================')
+        print('Title: ' + show['name'])
+        print('Summary: ' + show['overview'])
+        print('Original_language: ' + show['original_language'])
+    elif 'title' in show:
+        print('\n================================')
+        print('Title: ' + show['title'])
+        print('Summary: ' + show['overview'])
+        print('Original_language: ' + show['original_language'])
+        
