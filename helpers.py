@@ -5,6 +5,6 @@ def genre_dictionary(genres_result):
     genresList = genres_result['genres']
     genre_dict = {}
     for genre in genresList:
-        genre_dict[genre['name']] = genre['id']
+        genre_dict[genre['name'].lower()] = genre['id']
     return genre_dict
 
