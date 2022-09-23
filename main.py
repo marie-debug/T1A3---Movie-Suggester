@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import requests
 import helpers as hp
-import json
+
 
 load_dotenv()
 
@@ -37,7 +37,7 @@ def  get_trending_movies():
 
 def  get_top_movies():
     movies = requests.get('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
-                        '&language=en-US&with_genres='+str(genre_names[user_input])+'&sort_by=vote_average.desc').json()
+                        '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc').json()
 
     top_movies = movies['results'][:11]
 
@@ -72,12 +72,22 @@ while user_input != 'q':
     user_input = input(
         '\nWhat would you like to do?:  ').lower()
 
+   
 
-    if user_input in genre_names:
-        print(
-            f'\nYou have selected {user_input} below is a list of top 10 {user_input} movies available:\n ')
-        get_top_movies()
-        
+    if user_input =='genre':
+            genre_input = ''
+            while genre_input not in genre_names:
+                genre_input= input("\n[2] Enter genre name eg horror, action to get top 10 movies and shows based on genres: ")
+            
+                if genre_input in genre_names:
+                    print(
+                        f'\nYou have selected {genre_input} below is a list of top 10 {genre_input} movies available:\n ')
+                    get_top_movies()
+                else:
+                    print('The genre selected is not available. Please select from list below.')
+                    [print(key) for key, value in genre_names.items()]
+
+
     elif user_input == 'trend':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 trending movies available:\n ')
@@ -93,8 +103,5 @@ while user_input != 'q':
     elif user_input == 'q':
         print("\nThanks live long and prosper!.\n")
 
-    else:
-        print('The genre selected is not available. Please select from list below.')
-        [print(key) for key, value in genre_names.items()]
 
 print("Thanks again, bye now.")
