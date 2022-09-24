@@ -1,4 +1,5 @@
 
+#expected output result after hitting the genre api endpoint#
 genres_result = {'genres':
                  [
                      {'id': 28, 'name': 'Action'},
@@ -23,7 +24,7 @@ genres_result = {'genres':
                  ]
                  }
 
-
+#expected output result after hitting the top movies api endpoint#
 movies = {
     'page': 1,
     'results': [
@@ -62,6 +63,8 @@ movies = {
     'total_pages': 920,
     'total_results': 18398
 }
+
+#expected output result after hitting the trending shows api endpoint#
 trending = {'page': 1,
 'results': [
     {'adult': False,
@@ -77,18 +80,7 @@ trending = {'page': 1,
         'vote_average': 9.25,
          'vote_count': 12,
          'origin_country': ['US']
-
     },
-     {'adult': False,
-     'backdrop_path': '/geYUecpFI2AonDLhjyK9zoVFcMv.jpg',
-      'id': 810693,
-      'title': 'Jujutsu Kaisen 0', 'original_language': 'ja', 'original_title': '劇場版 呪術廻戦 0', 'overview': "Yuta Okkotsu is a nervous high school student who is suffering from a serious problem—his childhood friend Rika has turned into a curse and won't leave him alone. Since Rika is no ordinary curse, his plight is noticed by Satoru Gojo, a teacher at Jujutsu High, a school where fledgling exorcists learn how to combat curses. Gojo convinces Yuta to enroll, but can he learn enough in time to confront the curse that haunts him?", 'poster_path': '/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg', 'media_type': 'movie', 'genre_ids': [16, 28, 14],
-       'popularity': 1964.522,
-       'release_date': '2021-12-24',
-        'video': False,
-        'vote_average': 7.9,
-        'vote_count': 316
-        },
      {'adult': False,
      'backdrop_path': '/5AzjmGoqRNGytd8bOKoDcWxhjV2.jpg', 'id': 113988, 'name': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'original_language': 'en', 'original_name': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'overview': 'Across more than a decade, 17 teen boys and young men were murdered by serial killer Jeffrey Dahmer. How did he evade arrest for so long?', 'poster_path': '/qAv0UoAQVZWd6HGc83fsli1aKmo.jpg', 'media_type': 'tv', 'genre_ids': [18, 80], 'popularity': 43.821,
       'first_air_date': '2022-09-21',
@@ -96,9 +88,10 @@ trending = {'page': 1,
         'vote_count': 11,
          'origin_country': ['US']
          },
-          'origin_country': ['US']
+          'origin_country':['US']
           }], 'total_pages': 1000, 'total_results': 20000}
 
+#expected output result after hitting the upcoming movies endpoint#
 upcoming_movies = {
 
     'dates': {'maximum': '2022-10-19', 'minimum': '2022-09-28'},

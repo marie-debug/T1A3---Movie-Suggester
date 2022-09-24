@@ -18,10 +18,12 @@ user_input = ''
 
 
 def get_trending_movies():
-    
+    """
+    Gets a list of trending movies
+    """
     trending_shows = hp.get_data(
-            'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key)
-       
+        'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key)
+
     for show in trending_shows:
         if 'name' in show:
             print('\n================================')
@@ -36,22 +38,29 @@ def get_trending_movies():
 
 
 def get_top_movies():
+    """
+    Gets the top movies in the database for the given genre
+    """
     top_movies = hp.get_data('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
-                              '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc')
+                             '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc')
     for movie in top_movies:
-            print('\n================================')
-            print('Title: ' + movie['title'])
-            print('Summary: ' + movie['overview'])
+        print('\n================================')
+        print('Title: ' + movie['title'])
+        print('Summary: ' + movie['overview'])
 
 
 def get_upcoming_movies():
+    """
+    Gets all top 10 upcoming movies with their title release date and overview in the database
+    """
     upcoming_movies = hp.get_data(
-            'https://api.themoviedb.org/3/movie/upcoming?api_key='+api_key + '&language=en-US&page=1')
+        'https://api.themoviedb.org/3/movie/upcoming?api_key='+api_key + '&language=en-US&page=1')
     for movie in upcoming_movies:
-            print('\n================================')
-            print('Title: ' + movie['title'])
-            print('Summary: ' + movie['overview'])
-            print('Release date: ' + movie['release_date'])
+        print('\n================================')
+        print('Title: ' + movie['title'])
+        print('Summary: ' + movie['overview'])
+        print('Release date: ' + movie['release_date'])
+
 
 while user_input != 'q':
     print('Welcome to Movie suggestor, we help you find great shows!')
