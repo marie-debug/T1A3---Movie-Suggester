@@ -19,7 +19,10 @@ user_input = ''
 
 def get_trending_movies():
     """
-    Gets a list of trending movies
+    Gets the trending shows in realtime from movie database
+
+    Returns:
+        list: list of dictionaries containing information about eaach trending movie
     """
     trending_shows = hp.get_data(
         'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key)
@@ -35,18 +38,26 @@ def get_trending_movies():
             print('Title: ' + show['title'])
             print('Summary: ' + show['overview'])
             print('Original_language: ' + show['original_language'])
+    return trending_shows
 
 
 def get_top_movies(genre_input):
     """
     Gets the top movies in the database for the given genre
-    """
+
+    Args:
+        genre_input (string): a string input representing a genre
+
+    Returns:
+        list: list of dictionaries representing the top movies title , overview and rating in the database
+    """  
     top_movies = hp.get_data('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
                              '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc')
     for movie in top_movies:
         print('\n================================')
         print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])  
+        print('Summary: ' + movie['overview'])
+        print('Rating: ' + movie['vote_average'])
     return top_movies
 
 def get_upcoming_movies():
@@ -60,13 +71,14 @@ def get_upcoming_movies():
         print('Title: ' + movie['title'])
         print('Summary: ' + movie['overview'])
         print('Release date: ' + movie['release_date'])
+    return upcoming_movies
 
 def create_file(filename,data):
     user_file_input =input('would you like to save this list? (yes/no): ')
     if user_file_input == 'yes':
         with open(filename+".txt", "w",encoding="utf8") as f:
-             for dict in data:
-                f.write(f"Title:{dict['title']}\n\nSummary:\n\n{dict['overview']}\n================================\n\n")
+             for movie_info in data:
+                f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{movie_info['vote_average']}\n================================\n\n")
 
 
 
@@ -95,7 +107,7 @@ while user_input != 'q':
                 print(
                     f'\nYou have selected {genre_input} below is a list of top 10 {genre_input} movies available:\n ')
                 data = get_top_movies(genre_input)
-                create_file('trending movies',data)
+                create_file('top movies',data)
             else:
                 print(
                     'The genre selected is not available. Please select from list below.')
@@ -105,13 +117,14 @@ while user_input != 'q':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 trending movies available:\n ')
 
-        get_trending_movies()
-       
+        data=get_trending_movies()
+        create_file('trending movies',data)
     elif user_input == 'latest':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 upcoming movies:\n ')
 
-        get_upcoming_movies()
+        data = get_upcoming_movies()
+        create_file('upcoming movies',data)
 
     elif user_input == 'q':
         print("\nMay the Force be with you.\n")
