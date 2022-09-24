@@ -58,7 +58,7 @@ def get_top_movies(genre_input):
         print('\n================================')
         print('Title: ' + movie['title'])
         print('Summary: ' + movie['overview'])
-        print('Rating: ' + movie['vote_average'])
+        print('Rating: ' + str(movie['vote_average']))
     return top_movies
 
 def get_upcoming_movies():
@@ -71,7 +71,7 @@ def get_upcoming_movies():
         print('\n================================')
         print('Title: ' + movie['title'])
         print('Summary: ' + movie['overview'])
-        print('Release date: ' + movie['release_date'])
+        print('Release date: ' + str(movie['release_date']))
     return upcoming_movies
 
 def create_file(filename,data):
@@ -79,7 +79,10 @@ def create_file(filename,data):
     if user_file_input == 'yes':
         with open(filename+".txt", "w",encoding="utf8") as f:
              for movie_info in data:
-                f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{movie_info['vote_average']}\n================================\n\n")
+                if 'name' in movie_info:
+                    f.write(f"Title:{movie_info['name']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
+                else:
+                    f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
 
 
 
@@ -90,7 +93,7 @@ while user_input != 'q':
     print("\n[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.")
     print("\n[latest] Enter Latest to get top 10 upcoming movies and shows.") 
     print("\n[q] Enter q to quit.")
-    
+
     user_input = input(
         "\nWhat would you like to do?:  ").lower()
     expected_user_input = ['trend','genre','q','latest']
@@ -131,5 +134,6 @@ while user_input != 'q':
     elif user_input == 'q':
         print("\nMay the Force be with you.\n")
 
+bye_message = pyfiglet.figlet_format("Thanks again, we hope to see you soon ! Hasta la vista, baby.", font = "slant")
 
-print("Thanks again, we hope to see you soon ! Hasta la vista, baby.")
+print(bye_message)
