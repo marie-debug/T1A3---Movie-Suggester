@@ -4,4 +4,8 @@ import test_expected_output as expected
 
 
 def test_genre_dictionary():
-    assert hp.genre_dictionary(test_input.genres_result) == expected.genre_dict
+    genre= test_input.genres_result
+    result=hp.genre_dictionary(genre)
+    assert result == expected.genre_dict
+
+

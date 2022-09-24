@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
 import requests
+import pyfiglet
 import helpers as hp
-import json
+
 
 load_dotenv()
 
@@ -83,12 +84,13 @@ def create_file(filename,data):
 
 
 while user_input != 'q':
-    print("\nWelcome to Movie suggestor, we help you find great shows!")
+    welcome = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
+    print(welcome)
     print("\n[trend] Enter Trend to get top 10 trending movies and shows.")
     print("\n[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.")
-    print("\n[latest] Enter Latest to get top 10 upcoming movies and shows.")
+    print("\n[latest] Enter Latest to get top 10 upcoming movies and shows.") 
     print("\n[q] Enter q to quit.")
-
+    
     user_input = input(
         "\nWhat would you like to do?:  ").lower()
     expected_user_input = ['trend','genre','q','latest']
