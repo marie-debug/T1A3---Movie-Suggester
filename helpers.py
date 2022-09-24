@@ -57,3 +57,20 @@ def print_text_blue(text):
     """
     print(Fore.BLUE + text)
     print(Style.RESET_ALL)
+
+def create_file(filename,data):
+    """
+    Takes a filename and and data and creates and saves a file
+
+    Args:
+        filename (string): a string representation of the filename
+        data (list): list of dictionaries representing movies
+    """    
+    user_file_input =input('would you like to save this list? (yes/no): ')
+    if user_file_input == 'yes':
+        with open(filename+".txt", "w",encoding="utf8") as f:
+             for movie_info in data:
+                if 'name' in movie_info:
+                    f.write(f"Title:{movie_info['name']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
+                else:
+                    f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")

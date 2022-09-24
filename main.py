@@ -24,15 +24,7 @@ genre_names = api_request.get_genres()
 
 user_input = ''
 
-def create_file(filename,data):
-    user_file_input =input('would you like to save this list? (yes/no): ')
-    if user_file_input == 'yes':
-        with open(filename+".txt", "w",encoding="utf8") as f:
-             for movie_info in data:
-                if 'name' in movie_info:
-                    f.write(f"Title:{movie_info['name']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
-                else:
-                    f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
+
 
 welcome_message = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
 hp.print_text_blue(welcome_message)
@@ -68,7 +60,7 @@ while user_input!='q':
                 print(
                     f'\nYou have selected {genre_input} below is a list of top 10 {genre_input} movies available:\n ')
                 data = api_request.get_top_movies(genre_input)
-                create_file('top movies',data)
+                hp.create_file('top movies',data)
             else:
                 hp.print_text_green('The genre selected is not available. Please select from list below.')
                 [hp.print_text_green(key) for key, value in genre_names.items()]
@@ -78,13 +70,13 @@ while user_input!='q':
             f'\nYou have selected {user_input} below is a list of top 10 trending movies available:\n ')
 
         data=api_request.get_trending_movies()
-        create_file('trending movies',data)
+        hp.create_file('trending movies',data)
     elif user_input == 'latest':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 upcoming movies:\n ')
 
         data = api_request.get_upcoming_movies()
-        create_file('upcoming movies',data)
+        hp.create_file('upcoming movies',data)
         
 bye_message = pyfiglet.figlet_format("Thanks again, we hope to see you soon ! Hasta la vista, baby.", font = "slant")
 
