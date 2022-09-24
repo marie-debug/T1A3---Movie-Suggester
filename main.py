@@ -63,17 +63,22 @@ def get_upcoming_movies():
 
 
 while user_input != 'q':
-    print('Welcome to Movie suggestor, we help you find great shows!')
-    print("\n[1] Enter Trend to get top 10 trending movies and shows.")
-    print("\n[2] Enter genre name eg horror, action to get top 10 movies and shows based on genres.")
-    print("\n[3] Enter Latest to get top 10 upcoming movies and shows.")
+    print("\nWelcome to Movie suggestor, we help you find great shows!")
+    print("\n[trend] Enter Trend to get top 10 trending movies and shows.")
+    print("\n[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.")
+    print("\n[latest] Enter Latest to get top 10 upcoming movies and shows.")
     print("\n[q] Enter q to quit.")
 
     user_input = input(
-        '\nWhat would you like to do?:  ').lower()
+        "\nWhat would you like to do?:  ").lower()
+    expected_user_input = ['trend','genre','q','latest']
+    if user_input not in expected_user_input:
+        print("\nYou must enter either trend, genre ,latest or q ")
 
     if user_input == 'genre':
+
         genre_input = ''
+
         while genre_input not in genre_names:
             genre_input = input(
                 "\n[2] Enter genre name eg horror, action to get top 10 movies and shows based on genres: ")
@@ -100,7 +105,7 @@ while user_input != 'q':
         get_upcoming_movies()
 
     elif user_input == 'q':
-        print("\nThanks live long and prosper!.\n")
+        print("\nMay the Force be with you.\n")
 
 
-print("Thanks again, bye now.")
+print("Thanks again, we hope to see you soon ! Hasta la vista, baby.")
