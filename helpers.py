@@ -1,4 +1,5 @@
 import requests
+from colorama import Fore, Back, Style
 
 def genre_dictionary(genres_result):
     """
@@ -38,3 +39,21 @@ def get_data(url):
     finally:
         print("Please try again.")
     return data
+
+def print_text_green(text):
+    """converts text color to green
+
+    Args:
+        text (string): a string representation  of the text
+    """
+    print(Fore.GREEN + text)
+    print(Style.RESET_ALL)
+
+def print_text_blue(text):
+    """converts text color to blue
+
+    Args:
+        text (string):a string representation  of the text
+    """
+    print(Fore.BLUE + text)
+    print(Style.RESET_ALL)

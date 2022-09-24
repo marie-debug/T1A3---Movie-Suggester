@@ -84,18 +84,26 @@ def create_file(filename,data):
                 else:
                     f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
 
+welcome = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
+hp.print_text_blue(welcome)
 
+hp.print_text_green("""
+[trend] Enter Trend to get top 10 trending movies and shows.
 
-while user_input != 'q':
-    welcome = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
-    print(welcome)
-    print("\n[trend] Enter Trend to get top 10 trending movies and shows.")
-    print("\n[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.")
-    print("\n[latest] Enter Latest to get top 10 upcoming movies and shows.") 
-    print("\n[q] Enter q to quit.")
+[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.
 
-    user_input = input(
-        "\nWhat would you like to do?:  ").lower()
+[latest] Enter Latest to get top 10 upcoming movies and shows.
+
+[q] Enter q to quit.
+""")
+
+while user_input!='q':
+    user_input = input("\nWhat would you like to do?:  ").lower()
+
+    if user_input == 'q':
+        print("\nMay the Force be with you.\n")
+        break
+
     expected_user_input = ['trend','genre','q','latest']
     if user_input not in expected_user_input:
         print("\nYou must enter either trend, genre ,latest or q ")
@@ -106,7 +114,12 @@ while user_input != 'q':
 
         while genre_input not in genre_names:
             genre_input = input(
-                "\n[2] Enter genre name eg horror, action to get top 10 movies and shows based on genres: ")
+                "\n[2] Enter genre name eg horror, action to get top 10 movies and shows based on genres: ").lower()
+            
+            if genre_input =='q':
+                print("\nMay the Force be with you.\n")
+                user_input='q'
+                break
 
             if genre_input in genre_names:
                 print(
@@ -114,9 +127,8 @@ while user_input != 'q':
                 data = get_top_movies(genre_input)
                 create_file('top movies',data)
             else:
-                print(
-                    'The genre selected is not available. Please select from list below.')
-                [print(key) for key, value in genre_names.items()]
+                hp.print_text_green('The genre selected is not available. Please select from list below.')
+                [hp.print_text_green(key) for key, value in genre_names.items()]
 
     elif user_input == 'trend':
         print(
@@ -130,10 +142,7 @@ while user_input != 'q':
 
         data = get_upcoming_movies()
         create_file('upcoming movies',data)
-
-    elif user_input == 'q':
-        print("\nMay the Force be with you.\n")
-
+        
 bye_message = pyfiglet.figlet_format("Thanks again, we hope to see you soon ! Hasta la vista, baby.", font = "slant")
 
-print(bye_message)
+hp.print_text_blue(bye_message)
