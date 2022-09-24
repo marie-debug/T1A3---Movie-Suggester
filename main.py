@@ -3,76 +3,26 @@ from dotenv import load_dotenv
 import requests
 import pyfiglet
 import helpers as hp
+import api_request
 
 
 load_dotenv()
 
 api_key = os.getenv('api_key')
 
-genres_result = requests.get(
-    'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US').json()
+INSTRUCTIONS = """
+[trend] Enter Trend to get top 10 trending movies and shows.
 
+[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.
 
-genre_names = hp.genre_dictionary(genres_result)
+[latest] Enter Latest to get top 10 upcoming movies and shows.
+
+[q] Enter q to quit.
+"""
+
+genre_names = api_request.get_genres()
 
 user_input = ''
-
-
-def get_trending_movies():
-    """
-    Gets the trending shows in realtime from movie database
-
-    Returns:
-        list: list of dictionaries containing information about eaach trending movie
-    """
-    trending_shows = hp.get_data(
-        'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key)
-
-    for show in trending_shows:
-        if 'name' in show:
-            print('\n================================')
-            print('Title: ' + show['name'])
-            print('Summary: ' + show['overview'])
-            print('Original_language: ' + show['original_language'])
-        elif 'title' in show:
-            print('\n================================')
-            print('Title: ' + show['title'])
-            print('Summary: ' + show['overview'])
-            print('Original_language: ' + show['original_language'])
-    return trending_shows
-
-
-def get_top_movies(genre_input):
-    """
-    Gets the top movies in the database for the given genre
-
-    Args:
-        genre_input (string): a string input representing a genre
-
-    Returns:
-        list: list of dictionaries representing the top movies title , overview and rating in the database
-    """  
-    top_movies = hp.get_data('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
-                             '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc')
-    for movie in top_movies:
-        print('\n================================')
-        print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])
-        print('Rating: ' + str(movie['vote_average']))
-    return top_movies
-
-def get_upcoming_movies():
-    """
-    Gets all top 10 upcoming movies with their title release date and overview in the database
-    """
-    upcoming_movies = hp.get_data(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key='+api_key + '&language=en-US&page=1')
-    for movie in upcoming_movies:
-        print('\n================================')
-        print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])
-        print('Release date: ' + str(movie['release_date']))
-    return upcoming_movies
 
 def create_file(filename,data):
     user_file_input =input('would you like to save this list? (yes/no): ')
@@ -84,18 +34,11 @@ def create_file(filename,data):
                 else:
                     f.write(f"Title:{movie_info['title']}\n\nSummary:\n\n{movie_info['overview']}\n\nRating:{str(movie_info['vote_average'])}\n================================\n\n")
 
-welcome = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
-hp.print_text_blue(welcome)
+welcome_message = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
+hp.print_text_blue(welcome_message)
 
-hp.print_text_green("""
-[trend] Enter Trend to get top 10 trending movies and shows.
 
-[genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.
-
-[latest] Enter Latest to get top 10 upcoming movies and shows.
-
-[q] Enter q to quit.
-""")
+hp.print_text_green(INSTRUCTIONS)
 
 while user_input!='q':
     user_input = input("\nWhat would you like to do?:  ").lower()
@@ -106,7 +49,7 @@ while user_input!='q':
 
     expected_user_input = ['trend','genre','q','latest']
     if user_input not in expected_user_input:
-        print("\nYou must enter either trend, genre ,latest or q ")
+       hp.print_text_green(INSTRUCTIONS)
 
     if user_input == 'genre':
 
@@ -124,7 +67,7 @@ while user_input!='q':
             if genre_input in genre_names:
                 print(
                     f'\nYou have selected {genre_input} below is a list of top 10 {genre_input} movies available:\n ')
-                data = get_top_movies(genre_input)
+                data = api_request.get_top_movies(genre_input)
                 create_file('top movies',data)
             else:
                 hp.print_text_green('The genre selected is not available. Please select from list below.')
@@ -134,13 +77,13 @@ while user_input!='q':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 trending movies available:\n ')
 
-        data=get_trending_movies()
+        data=api_request.get_trending_movies()
         create_file('trending movies',data)
     elif user_input == 'latest':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 upcoming movies:\n ')
 
-        data = get_upcoming_movies()
+        data = api_request.get_upcoming_movies()
         create_file('upcoming movies',data)
         
 bye_message = pyfiglet.figlet_format("Thanks again, we hope to see you soon ! Hasta la vista, baby.", font = "slant")
