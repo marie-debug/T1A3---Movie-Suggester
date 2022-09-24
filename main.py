@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import requests
 import helpers as hp
-
+import json
 
 load_dotenv()
 
@@ -37,7 +37,7 @@ def get_trending_movies():
             print('Original_language: ' + show['original_language'])
 
 
-def get_top_movies():
+def get_top_movies(genre_input):
     """
     Gets the top movies in the database for the given genre
     """
@@ -46,8 +46,8 @@ def get_top_movies():
     for movie in top_movies:
         print('\n================================')
         print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])
-
+        print('Summary: ' + movie['overview'])  
+    return top_movies
 
 def get_upcoming_movies():
     """
@@ -60,6 +60,14 @@ def get_upcoming_movies():
         print('Title: ' + movie['title'])
         print('Summary: ' + movie['overview'])
         print('Release date: ' + movie['release_date'])
+
+def create_file(filename,data):
+    user_file_input =input('would you like to save this list? (yes/no): ')
+    if user_file_input == 'yes':
+        with open(filename+".txt", "w",encoding="utf8") as f:
+             for dict in data:
+                f.write(f"Title:{dict['title']}\n\nSummary:\n\n{dict['overview']}\n================================\n\n")
+
 
 
 while user_input != 'q':
@@ -86,7 +94,8 @@ while user_input != 'q':
             if genre_input in genre_names:
                 print(
                     f'\nYou have selected {genre_input} below is a list of top 10 {genre_input} movies available:\n ')
-                get_top_movies()
+                data = get_top_movies(genre_input)
+                create_file('trending movies',data)
             else:
                 print(
                     'The genre selected is not available. Please select from list below.')
@@ -97,7 +106,7 @@ while user_input != 'q':
             f'\nYou have selected {user_input} below is a list of top 10 trending movies available:\n ')
 
         get_trending_movies()
-
+       
     elif user_input == 'latest':
         print(
             f'\nYou have selected {user_input} below is a list of top 10 upcoming movies:\n ')
