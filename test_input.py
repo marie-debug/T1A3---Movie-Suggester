@@ -25,7 +25,7 @@ genres_result = {'genres':
                  }
 
 #expected output result after hitting the top movies api endpoint#
-movies = {
+top_movies = {
     'page': 1,
     'results': [
         {
@@ -35,7 +35,7 @@ movies = {
             'id': 1025488,
             'original_language': 'en',
             'original_title': 'SK80',
-            'overview': 'When desire is stronger than physical strength, and the consequences are immeasurable, we are left with a radical journey of an elderly person who wants to skate in order to feel alive again.',
+            'overview': 'When desire is stronger than physical strength',
             'popularity': 1.055,
             'poster_path': '/2RPcTudkd7CM2BCCQLYpUJpoVQc.jpg', 'release_date': '2022-07-06',
             'title': 'SK80',
@@ -50,7 +50,7 @@ movies = {
             'id': 1024637,
             'original_language': 'en',
             'original_title': 'Bugs',
-            'overview': 'After a virus decimates the wild rabbit populations, Bugs and three fellow lost souls roam the desert seeking answers from strangers as they journey towards the Light.',
+            'overview': 'After a virus decimates the wild rabbit populations',
             'popularity': 0.6,
             'poster_path': '/rg9W9WpUeyT6fDEpUYhTIwcpN8W.jpg',
             'release_date': '2021-11-01',
@@ -65,7 +65,7 @@ movies = {
 }
 
 #expected output result after hitting the trending shows api endpoint#
-trending = {'page': 1,
+trending_shows = {'page': 1,
 'results': [
     {'adult': False,
     'backdrop_path': '/3hPKf2eriMi6B2L5brfQH0A7MNe.jpg',
@@ -73,7 +73,8 @@ trending = {'page': 1,
       'name': 'Star Wars: Andor',
        'original_language': 'en',
        'original_name': 'Star Wars: Andor',
-       'overview': 'The tale of the burgeoning rebellion against the Empire and how people and planets became involved. In an era filled with danger, deception and intrigue, Cassian Andor embarks on the path that is destined to turn him into a rebel hero.', 'poster_path': '/59SVNwLfoMnZPPB6ukW6dlPxAdI.jpg', 'media_type': 'tv',
+       'overview': 'test overview',
+       'poster_path': '/59SVNwLfoMnZPPB6ukW6dlPxAdI.jpg', 'media_type': 'tv',
        'genre_ids': [10765, 10759, 10768],
        'popularity': 180.762,
        'first_air_date': '2022-09-21',
@@ -81,15 +82,15 @@ trending = {'page': 1,
          'vote_count': 12,
          'origin_country': ['US']
     },
-     {'adult': False,
-     'backdrop_path': '/5AzjmGoqRNGytd8bOKoDcWxhjV2.jpg', 'id': 113988, 'name': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'original_language': 'en', 'original_name': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'overview': 'Across more than a decade, 17 teen boys and young men were murdered by serial killer Jeffrey Dahmer. How did he evade arrest for so long?', 'poster_path': '/qAv0UoAQVZWd6HGc83fsli1aKmo.jpg', 'media_type': 'tv', 'genre_ids': [18, 80], 'popularity': 43.821,
+    {'adult': False,
+     'backdrop_path': '/5AzjmGoqRNGytd8bOKoDcWxhjV2.jpg', 
+     'id': 113988, 'title': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'original_language': 'en', 'original_name': 'Dahmer - Monster: The Jeffrey Dahmer Story', 'overview': 'Across more than a decade', 'poster_path': '/qAv0UoAQVZWd6HGc83fsli1aKmo.jpg', 'media_type': 'tv', 'genre_ids': [18, 80], 'popularity': 43.821,
       'first_air_date': '2022-09-21',
        'vote_average': 8.9,
         'vote_count': 11,
          'origin_country': ['US']
          },
-          'origin_country':['US']
-          }], 'total_pages': 1000, 'total_results': 20000}
+    ], 'total_pages': 1000, 'total_results': 20000}       
 
 #expected output result after hitting the upcoming movies endpoint#
 upcoming_movies = {
@@ -105,7 +106,7 @@ upcoming_movies = {
              'id': 985939,
               'original_language': 'en',
               'original_title': 'Fall',
-              'overview': 'For best friends Becky and Hunter, life is all about conquering fears and pushing limits. But after they climb 2,000 feet to the top of a remote, abandoned radio tower, they find themselves stranded with no way down. Now Becky and Hunter’s expert climbing skills will be put to the ultimate test as they desperately fight to survive the elements, a lack of supplies, and vertigo-inducing heights',
+              'overview': 'For best friends Becky and Hunter',
               'popularity': 6633.214,
                'poster_path': '/spCAxD99U1A6jsiePFoqdEcY0dG.jpg',
                'release_date': '2022-08-11',
@@ -122,7 +123,7 @@ upcoming_movies = {
                     'id': 610150,
                     'original_language': 'ja',
                      'original_title': 'ドラゴンボール超 スーパーヒーロー',
-                      'overview': 'The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family.',
+                      'overview': 'The Red Ribbon Army',
                        'popularity': 2783.286,
                         'poster_path': '/rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg',
                          'release_date': '2022-06-11',

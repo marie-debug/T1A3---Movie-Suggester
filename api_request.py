@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import requests
-import pyfiglet
 import helpers as hp
 
 
@@ -10,6 +9,7 @@ load_dotenv()
 api_key = os.getenv('api_key')
 
 def get_genres():
+
     genres_result = requests.get(
     'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US').json()
 
@@ -18,7 +18,7 @@ def get_genres():
 
 
 
-def get_trending_movies():
+def get_trending_shows():
     """
     Gets the trending shows in realtime from movie database
 
@@ -28,18 +28,10 @@ def get_trending_movies():
     trending_shows = hp.get_data(
         'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key)
 
-    for show in trending_shows:
-        if 'name' in show:
-            print('\n================================')
-            print('Title: ' + show['name'])
-            print('Summary: ' + show['overview'])
-            print('Original_language: ' + show['original_language'])
-        elif 'title' in show:
-            print('\n================================')
-            print('Title: ' + show['title'])
-            print('Summary: ' + show['overview'])
-            print('Original_language: ' + show['original_language'])
+    hp.print_trending_shows(trending_shows)
     return trending_shows
+
+
 
 
 def get_top_movies(genre_input):
@@ -55,12 +47,10 @@ def get_top_movies(genre_input):
     genre_names= get_genres() 
     top_movies = hp.get_data('https://api.themoviedb.org/3/discover/movie?api_key='+api_key +
                              '&language=en-US&with_genres='+str(genre_names[genre_input])+'&sort_by=vote_average.desc')
-    for movie in top_movies:
-        print('\n================================')
-        print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])
-        print('Rating: ' + str(movie['vote_average']))
+    hp.print_top_movies(top_movies)
     return top_movies
+
+
     
 def get_upcoming_movies():
     """
@@ -68,9 +58,6 @@ def get_upcoming_movies():
     """
     upcoming_movies = hp.get_data(
         'https://api.themoviedb.org/3/movie/upcoming?api_key='+api_key + '&language=en-US&page=1')
-    for movie in upcoming_movies:
-        print('\n================================')
-        print('Title: ' + movie['title'])
-        print('Summary: ' + movie['overview'])
-        print('Release date: ' + str(movie['release_date']))
+    hp.print_upcoming_movies(upcoming_movies)
     return upcoming_movies
+
