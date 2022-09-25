@@ -21,8 +21,6 @@ def main():
 
     user_input = ''
 
-
-
     welcome_message = pyfiglet.figlet_format("Welcome to Movie suggestor, we help you find great shows")
     hp.print_text_blue(welcome_message)
 

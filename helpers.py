@@ -79,6 +79,12 @@ def create_file(filename,data):
         print_text_green("your file has been successfully saved")
 
 def print_trending_shows(trending_shows):
+    """
+    Loops through list of dictionaries and prints the list of titles, summary and original language for trending shows 
+
+    Args:
+        trending_shows (list): a list of dictionaries containing the details of each show
+    """    
     for show in trending_shows:
         if 'name' in show:
             print('\n================================')
@@ -92,6 +98,12 @@ def print_trending_shows(trending_shows):
             print('Original_language: ' + show['original_language'])
 
 def print_top_movies(top_movies):
+    """
+    Loops through list of dictionaries and prints the list of titles, summary and rating for top movies
+
+    Args:
+        top_movies (list): a list of dictionaries containing the details of each movie 
+    """    
     for movie in top_movies:
         print('\n================================')
         print('Title: ' + movie['title'])
@@ -99,6 +111,12 @@ def print_top_movies(top_movies):
         print('Rating: ' + str(movie['vote_average']))
 
 def print_upcoming_movies(upcoming_movies):
+    """
+    Loops through list of dictionaries and prints the list of titles, summary and release date for upcoming movies
+
+    Args:
+        upcoming_movies (list): a list of dictionaries containing the details of each upcoming movie
+    """    
     for movie in upcoming_movies:
         print('\n================================')
         print('Title: ' + movie['title'])
