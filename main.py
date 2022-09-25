@@ -10,7 +10,7 @@ def main():
     INSTRUCTIONS = """
     [trend] Enter Trend to get top 10 trending movies and shows.
 
-    [genre] Enter genre name eg horror, action to get top 10 movies and shows based on genres.
+    [genre] Enter genre  to get top 10 movies and shows based on genres.
 
     [latest] Enter Latest to get top 10 upcoming movies and shows.
 
