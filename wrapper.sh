@@ -1,4 +1,7 @@
 #!/bin/bash
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
 if ! [[ -x "$(command -v python3)" ]]
 then
   echo 'Error: 
@@ -13,5 +16,6 @@ then
     To install pip3, check out https://pypi.org/project/pip/' >&2
   exit 1
 fi
+
 pip3 install -r requirements.txt 
 python3 main.py
